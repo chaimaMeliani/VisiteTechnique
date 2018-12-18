@@ -1,0 +1,202 @@
+
+<div class="">
+  <pg-tabset tabAnimation="slide-left" Type="linetriangle" extraTabClass="no-border" extraTabContentClass="bg-white b-t b-light" [SelectedIndex]="selectedStep">
+    <pg-tab>
+      <ng-template #TabHeading><i class="fa fa-user tab-icon"></i> <span>Client</span></ng-template>
+      <div class="row row-same-height">
+        <div class="col-md-5 b-r b-dashed b-grey sm-b-b">
+          <div class="padding-30 sm-padding-5 sm-m-t-15 m-t-50">
+            <i class="fa fa-user fa-2x hint-text"></i>
+            <h2>Créer un compte .</h2>
+            <a routerLink="/app/login" class="text-info small"> Si vous en avez déjà un, connectez-vous ici</a>
+
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="padding-30 sm-padding-5">
+             <form role="form"  autocomplete="off" [formGroup]="clientForm">
+                   <p>Information personnel</p>
+                   <div class="form-group-attached">
+                     <div class="row clearfix">
+                       <div class="col-sm-6">
+                         <div class="form-group form-group-default required" [class.has-error]="getFormControl('firstName').invalid && (getFormControl('firstName').dirty )">
+                           <Label>Prenom</Label>
+                           <input  pgFormGroupDefault type="text" class="form-control" name="firstName" formControlName="firstName">
+                           <div class="invalid-tooltip" *ngIf="getFormControl('firstName').invalid && (getFormControl('firstName').dirty )">
+                             Ce champ est obligatoire.
+                           </div>
+                         </div>
+                       </div>
+                       <div class="col-sm-6">
+                         <div class="form-group form-group-default required" [class.has-error]="getFormControl('lastName').invalid && (getFormControl('lastName').dirty )">
+                           <Label>Nom</Label>
+                           <input  pgFormGroupDefault type="text" class="form-control" name="lastName" formControlName="lastName">
+                           <div class="invalid-tooltip" *ngIf="getFormControl('lastName').invalid && (getFormControl('lastName').dirty )">
+                             Ce champ est obligatoire.
+                           </div>
+                         </div>
+                       </div>
+                     </div>
+                     <div class="row clearfix">
+                       <div class="col-sm-6">
+                         <div class="form-group form-group-default required" [class.has-error]="getFormControl('cin').invalid && (getFormControl('cin').dirty )">
+                           <Label>CIN</Label>
+                           <input  pgFormGroupDefault type="text" class="form-control" name="cin" formControlName="cin">
+                           <div class="invalid-tooltip" *ngIf="getFormControl('cin').invalid && (getFormControl('cin').dirty )">
+                             Ce champ est obligatoire.
+                           </div>
+                         </div>
+                       </div>
+                       <div class="col-sm-6">
+                         <div class="form-group form-group-default required" [class.has-error]="getFormControl('permis').invalid && (getFormControl('permis').dirty )">
+                           <Label>Numero permis </Label>
+                           <input  pgFormGroupDefault type="text" class="form-control" name="permis" formControlName="permis">
+                           <div class="invalid-tooltip" *ngIf="getFormControl('permis').invalid && (getFormControl('permis').dirty )">
+                             Ce champ est obligatoire.
+                           </div>
+                         </div>
+                       </div>
+                     </div>
+                  </div>
+                   <br>
+                   <p>Compte</p>
+                   <div class="form-group-attached">
+                     <div class="form-group form-group-default required" [class.has-error]="getFormControl('userName').invalid && (getFormControl('userName').dirty )">
+                       <Label>Nom d'utilisateur</Label>
+                       <input  pgFormGroupDefault type="text" class="form-control" name="userName" formControlName="userName" >
+                       <div class="invalid-tooltip" *ngIf="getFormControl('userName').invalid && (getFormControl('userName').dirty )">
+                         Ce champ est obligatoire.
+                       </div>
+                     </div>
+                   </div>
+               <div class="form-group-attached">
+                 <div class="form-group form-group-default required" [class.has-error]="getFormControl('password').invalid && (getFormControl('password').dirty )">
+                   <Label>Mot de passe</Label>
+                   <input  pgFormGroupDefault type="password" class="form-control" name="password" formControlName="password" >
+                   <div class="invalid-tooltip" *ngIf="getFormControl('password').invalid && (getFormControl('password').dirty )">
+                     Ce champ est obligatoire.
+                   </div>
+                 </div>
+               </div>
+                 </form>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-end p-t-20 p-b-20">
+        <button class="btn btn-primary btn-cons pull-right btn-animated from-left fa fa-car" type="button" [class.disabled]="clientForm.invalid" (click)="navigateToVehicule()">
+          <span>Suivant</span>
+        </button>
+      </div>
+
+    </pg-tab>
+    <pg-tab [Disabled]="disabledTabs.vehiculeTab">
+      <ng-template #TabHeading><i class="fa fa-car tab-icon"></i> <span>Vehicule</span></ng-template>
+      <div class="row row-same-height">
+        <div class="col-md-5 b-r b-dashed b-grey ">
+          <div class="padding-30 sm-padding-5 sm-m-t-15 m-t-50">
+            <h2> Vos informations sont en sécurité chez nous! </ h2>
+           <p> Nous respectons votre vie privée et la protégeons. </ p>
+
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="padding-30 sm-padding-5">
+            <form role="form"  autocomplete="off" [formGroup]="vehiculeForm">
+                <p>Name and Email Address</p>
+                <div class="form-group-attached">
+                  <div class="row clearfix">
+                    <div class="col-sm-6">
+                      <div class="form-group form-group-default required" [class.has-error]="getFormControlV('numChassis').invalid && (getFormControlV('numChassis').dirty )">
+                        <Label>Numero chassis</Label>
+                        <input  pgFormGroupDefault type="text" class="form-control" name="numChassis" formControlName="numChassis">
+                        <div class="invalid-tooltip" *ngIf="getFormControlV('numChassis').invalid && (getFormControlV('numChassis').dirty) ">
+                         Ce champ est obligatoire.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group form-group-default required" [class.has-error]="getFormControlV('numCateGrise').invalid && (getFormControlV('numCateGrise').dirty )">
+                        <Label>Numero carte grise</Label>
+                        <input  pgFormGroupDefault type="text" class="form-control" name="numCateGrise" formControlName="numCateGrise">
+                        <div class="invalid-tooltip" *ngIf="getFormControlV('numCateGrise').invalid && (getFormControlV('numCateGrise').dirty) ">
+                          Ce champ est obligatoire.
+                        </div>
+                      </div>
+                  </div>
+                    </div>
+                  <div class="row clearfix">
+                    <div class="col-sm-6">
+                      <div class="form-group form-group-default required form-group-default-select" >
+                        <Label>Type Immatriculation</Label>
+                        <pg-select  class="testClass cs-select cs-skin-slide cs-transparent form-control" [(ngModel)]="typeImm"  [PlaceHolder]="'Select'" name="typeImm" formControlName="typeImm">
+                          <pg-option Value="TU" Label="Série  Normal   (TU)">Série  Normal   (TU)</pg-option>
+                          <pg-option Value="RS" Label="Régime suspensif (RS)" >Régime suspensif (RS)</pg-option>
+                          <pg-option Value="MOTO" Label="Moto (MOTO)" >Moto (MOTO)</pg-option>
+                          <pg-option Value="TRAC" Label="Trac (TRAC)" >Trac (TRAC)</pg-option>
+                          <pg-option Value="PAT" Label="Personnel administratif et technique (PAT)" >Personnel administratif et technique (PAT)</pg-option>
+                          <pg-option Value="CMD" Label="Chef mission diplomatique (CMD)" >Chef mission diplomatique (CMD)</pg-option>
+                          <pg-option Value="CD" Label="Corps diplomatique (CD)" >Corps diplomatique (CD)</pg-option>
+                          <pg-option Value="MD" Label="Mission diplomatique (MD)" >Mission diplomatique (MD)</pg-option>
+                          <pg-option Value="MC" Label="Mission consulaire (MC)" >Mission consulaire (MC)</pg-option>
+                          <pg-option Value="CC" Label="Corps consulaire (CC)" >Corps consulaire (CC)</pg-option>
+                          <pg-option Value="REM" Label="Remorque (REM)" >Remorque (REM)</pg-option>
+                          <pg-option Value="AA" Label="Appareil agricole (AA)" >Appareil agricole (AA)</pg-option>
+                          <pg-option Value="ES" Label="Engin Spécial (ES)" >Engin Spécial (ES)</pg-option>
+                          <pg-option Value="PE" Label="Propriétaire de L'État (PE)" >Propriétaire de L'État (PE)</pg-option>
+                          <pg-option Value="IT" Label="Immatriculation temporaire (IT)" >Immatriculation temporaire (IT)</pg-option>
+
+                        </pg-select>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group form-group-default required " [class.has-error]="getFormControlV('immatriculation').invalid && (getFormControlV('immatriculation').dirty )">
+                        <Label>Immatriculation</Label>
+                        <input type="text" class="form-control" [readonly]="typeImm === undefined" name="immatriculation "formControlName="immatriculation" [placeholder]="types.includes(typeImm)?'xx-xxxx':'xxxxx'" />
+                        <div class="invalid-tooltip" *ngIf="getFormControlV('immatriculation').invalid && (getFormControlV('immatriculation').dirty) ">
+                          Ce champ est obligatoire.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+				   <div class="row clearfix">
+                    <div class="col-sm-6">
+                      <div class="form-group form-group-default required form-group-default-select" >
+                        <Label>Marque</Label>
+                        <pg-select pgFormGroupDefault class="testClass cs-select cs-skin-slide cs-transparent form-control" [(ngModel)]="marque"  (ngModelChange)="getModeles()" [PlaceHolder]="'Select'" name="marque" formControlName="marque" AllowClear ShowSearch>
+
+						   <pg-option *ngFor="let marque of marques$"  [Label]="marque.MakeName"   [Value]="marque.MakeName"> </pg-option>
+                  </pg-select>
+
+                      </div>
+                    </div>
+                     <div class="col-sm-6">
+                      <div class="form-group form-group-default required form-group-default-select" >
+                        <Label>Modele</Label>
+                        <pg-select pgFormGroupDefault class="testClass cs-select cs-skin-slide cs-transparent form-control"   [PlaceHolder]="'Select'" name="modele" formControlName="modele" AllowClear ShowSearch>
+                         <pg-option *ngFor="let modele of modeles$"  [Label]="modele.Model_Name"   [Value]="modele.Model_Name"> </pg-option>
+
+                        </pg-select>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+
+              </form>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-end p-t-20 p-b-20">
+        <button class="btn btn-default btn-cons pull-right btn-animated from-left fa fa-user" type="button" (click)="prevTab()">
+          <span>précédent</span>
+        </button>
+        <button class="btn btn-primary btn-cons pull-right btn-animated from-left fa fa-check" [class.disabled]="vehiculeForm.invalid" type="button" (click)="submit()">
+          <span>Valider</span>
+        </button>
+      </div>
+
+    </pg-tab>
+
+  </pg-tabset>
+</div>

@@ -1,0 +1,125 @@
+  <!-- MODAL STICK UP  -->
+  <div bsModal #addNewAppModal="bs-modal" class="modal fade stick-up" tabindex="-1" role="dialog" aria-labelledby="addNewAppModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header clearfix ">
+          <button type="button" class="close" (click)="addNewAppModal.hide()" aria-hidden="true"><i class="pg pg-close fs-14"></i>
+          </button>
+          <h4 class="p-b-5"><span class="semi-bold">Nouvelle</span> Voiture</h4>
+        </div>
+        <div class="modal-body">
+          <p class="small-text">Créez une nouvelle voiture à l'aide de ce formulaire, assurez-vous de toutes les remplir</p>
+          <form role="form" autocomplete="off" #basicForm="ngForm">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group form-group-default required" [class.has-error]="modalNumChassis.invalid && (modalNumChassis.dirty || modalNumChassis.touched)" >
+                    <label>Numero Chassis</label>
+                    <input type="text" class="form-control" id="numChassis" name="numChassis" [(ngModel)]="numChassis"  #modalNumChassis="ngModel" required>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group form-group-default required" [class.has-error]="modalNumCarteGrise.invalid && (modalNumCarteGrise.dirty || modalNumCarteGrise.touched)" >
+                    <label>Numero Carte Grise</label>
+                    <input type="text" placeholder=""  class="form-control" id="numCarteGrise" name="numCarteGrise" [(ngModel)]="numCarteGrise"  #modalNumCarteGrise="ngModel" required>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group form-group-default required" [class.has-error]="modalTypeImmatriculation.invalid && (modalTypeImmatriculation.dirty || modalTypeImmatriculation.touched)" >
+                    <label>Type immatriculation</label>                    
+                    <pg-select   class="testClass cs-select cs-skin-slide cs-transparent form-control"  id="typeImmatriculation" name="typeImmatriculation" [(ngModel)]="typeImmatriculation"  #modalTypeImmatriculation="ngModel" placeholder="" append-to-body="false" required>
+                      <pg-option Value="TU" Label="Série  Normal   (TU)">Série  Normal   (TU)</pg-option>
+                      <pg-option Value="RS" Label="Régime suspensif (RS)" >Régime suspensif (RS)</pg-option>
+                      <pg-option Value="MOTO" Label="Moto (MOTO)" >Moto (MOTO)</pg-option>
+                      <pg-option Value="TRAC" Label="Trac (TRAC)" >Trac (TRAC)</pg-option>
+                      <pg-option Value="PAT" Label="Personnel administratif et technique (PAT)" >Personnel administratif et technique (PAT)</pg-option>
+                      <pg-option Value="CMD" Label="Chef mission diplomatique (CMD)" >Chef mission diplomatique (CMD)</pg-option>
+                      <pg-option Value="CD" Label="Corps diplomatique (CD)" >Corps diplomatique (CD)</pg-option>
+                      <pg-option Value="MD" Label="Mission diplomatique (MD)" >Mission diplomatique (MD)</pg-option>
+                      <pg-option Value="MC" Label="Mission consulaire (MC)" >Mission consulaire (MC)</pg-option>
+                      <pg-option Value="CC" Label="Corps consulaire (CC)" >Corps consulaire (CC)</pg-option>
+                      <pg-option Value="REM" Label="Remorque (REM)" >Remorque (REM)</pg-option>
+                      <pg-option Value="AA" Label="Appareil agricole (AA)" >Appareil agricole (AA)</pg-option>
+                      <pg-option Value="ES" Label="Engin Spécial (ES)" >Engin Spécial (ES)</pg-option>
+                      <pg-option Value="PE" Label="Propriétaire de L'État (PE)" >Propriétaire de L'État (PE)</pg-option>
+                      <pg-option Value="IT" Label="Immatriculation temporaire (IT)" >Immatriculation temporaire (IT)</pg-option>
+
+                    </pg-select>
+                  </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group form-group-default required" [class.has-error]="modalImmatriculation.invalid && (modalImmatriculation.dirty || modalImmatriculation.touched)" >
+                    <label>Immatriculation</label>
+                   <input type="text" class="form-control"   [placeholder]="types.includes(this.typeImmatriculation)?'xx-xxx':'xxxxxx'" id="immatriculation" name="immatriculation" [(ngModel)]="immatriculation"  #modalImmatriculation="ngModel" required>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group form-group-default required" [class.has-error]="modalMarque.invalid && (modalMarque.dirty || modalMarque.touched)" >
+                    <label>Marque</label>
+                   <pg-select  ShowSearch   class="testClass cs-select cs-skin-slide cs-transparent form-control" [(ngModel)]="marque" (ngModelChange)="getModeles()"   name="marque"   #modalMarque="ngModel" placeholder=""  required>
+                    <pg-option *ngFor="let marque of marques$"  [Label]="marque.MakeName"   [Value]="marque.MakeName"> </pg-option>
+
+                    </pg-select>
+                  </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group form-group-default required" [class.has-error]="modalModele.invalid && (modalModele.dirty || modalModele.touched)" >
+                    <label>Modele</label>
+                    <pg-select  AllowClear ShowSearch   class="testClass cs-select cs-skin-slide cs-transparent form-control"  id="modele" name="modele" [(ngModel)]="modele"  #modalModele="ngModel" placeholder=""  required>
+                      <pg-option *ngFor="let modele of modeles$"  [Label]="modele.Model_Name"   [Value]="modele.Model_Name"> </pg-option>
+  
+                      </pg-select>
+                  </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button id="add-app" type="button" class="btn btn-primary  btn-cons" (click)="addRow()" [class.disabled]="basicForm.invalid" >Add</button>
+          <button type="button" class="btn btn-cons" (click)="addNewAppModal.hide()">Close</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+ 
+<pg-container extraHorizontalClass="bg-white" extraClass="bg-white">
+  <!-- START card -->
+  <div class="card card-transparent">
+    
+    <div class="card-header ">
+      <div class="card-title">La liste des voitures
+      </div>
+      <div class="pull-right">
+        <div class="col-xs-12">
+          <button (click)="showModal()"  class="btn btn-primary btn-cons"><i class="fa fa-plus"></i> Ajouter une voiture
+          </button>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+          <ngx-datatable
+          #tableDynamic
+          class='table table-hover'
+          [columns]="columnsDynamic"
+          [columnMode]="columnModeSetting"
+          [scrollbarH]="scrollBarHorizontal"
+          [headerHeight]="50"
+          [footerHeight]="50"
+          [rowHeight]="'auto'"
+          [limit]="10"
+          [rows]='dynamicRows'>
+          </ngx-datatable>
+        </div>
+    </div>
+  </div>
+  <!-- END card -->
+</pg-container>
