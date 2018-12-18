@@ -1,3 +1,37 @@
+  <!-- MODAL STICK UP  -->
+  <div bsModal #addNewAppModal="bs-modal" class="modal fade stick-up" tabindex="-1" role="dialog" aria-labelledby="addNewAppModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header clearfix ">
+          <button type="button" class="close" (click)="addNewAppModal.hide()" aria-hidden="true"><i class="pg pg-close fs-14"></i>
+          </button>
+          <h4 class="p-b-5"><span class="semi-bold">Nouveau</span> Mot de passe</h4>
+        </div>
+        <div class="modal-body">
+          
+          <form role="form" autocomplete="off" #basicForm="ngForm">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group form-group-default required" [class.has-error]="modalPassword.invalid && (modalPassword.dirty || modalPassword.touched)" >
+                    <label>Mot de passe</label>
+                    <input type="password" class="form-control" id="password" name="password" [(ngModel)]="password"  #modalPassword="ngModel" required>
+                </div>
+              </div>
+            </div>
+            
+           
+           
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button id="add-app" type="button" class="btn btn-primary  btn-cons" (click)="submit()" [class.disabled]="basicForm.invalid" >Confirmer</button>
+          <button type="button" class="btn btn-cons" (click)="addNewAppModal.hide()">Fermer</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
 <pg-container extraHorizontalClass="bg-white" extraClass="bg-white">
   <!-- START card -->
   <div class="card card-transparent">
@@ -5,12 +39,25 @@
     <div class="card-header ">
       <div class="card-title">Informations
       </div>
-     
+      <div class="pull-right">
+        <div class="col-xs-12">
+          <button (click)="showModal()"  class="btn btn-primary btn-cons"><i class="fa fa-pencil"></i> Modifier le mot de passe
+          </button>
+        </div>
+      </div>
       <div class="clearfix"></div>
     </div>
     <div class="card-body" style="padding: 50px 100px;">
       <form role="form">
         <div class="form-group-attached">
+            <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group form-group-default">
+                    <label>Nom d'utilisateur</label>
+                    <input type="text" class="info form-control"  [(ngModel)]="userName" name="userName" readonly>
+                  </div>
+                </div>
+              </div>
           <div class="row">
             <div class="col-md-12">
               <div class="form-group form-group-default">
@@ -33,6 +80,7 @@
               </div>
             </div>
           </div>
+          
         </div>
       </form>
     </div>
