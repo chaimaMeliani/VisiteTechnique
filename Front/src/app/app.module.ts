@@ -69,6 +69,7 @@ import { CentresComponent } from './centres/centres.component';
 import { VoituresComponent } from './voitures/voitures.component';
 import { pgSelectModule} from './@pages/components/select/select.module';
 import { HistoriquesComponent } from './historiques/historiques.component';
+import { InfoClientComponent } from './info-client/info-client.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -102,6 +103,7 @@ export class AppHammerConfig extends HammerGestureConfig  {
     CentresComponent,
     VoituresComponent,
     HistoriquesComponent,
+    InfoClientComponent,
     
     
   ],

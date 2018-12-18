@@ -14,6 +14,8 @@ import {
 import { CentresComponent } from './centres/centres.component';
 import { VoituresComponent } from './voitures/voitures.component';
 import { HistoriquesComponent } from './historiques/historiques.component';
+import { InfoClientComponent } from './info-client/info-client.component';
+
 export const AppRoutes: Routes = [
   {
     path: 'app',
@@ -50,6 +52,14 @@ export const AppRoutes: Routes = [
     children: [{
       path: 'historiques',
       component: HistoriquesComponent
+    }],
+  },
+  {
+    path: 'app',
+    component: CondensedComponent,
+    children: [{
+      path: 'infoClient',
+      component: InfoClientComponent
     }],
   }
 ];

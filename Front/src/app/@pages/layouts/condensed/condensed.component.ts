@@ -44,7 +44,7 @@ export class CondensedComponent extends RootLayout implements OnInit {
         submenu:[
           {
             label:"information client",
-            routerLink:"layouts/default",
+            routerLink:"infoClient",
             iconType:"fa",
             iconName:"user",
           },
