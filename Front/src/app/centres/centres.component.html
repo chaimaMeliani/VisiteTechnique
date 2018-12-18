@@ -1,10 +1,23 @@
-<div #centres [innerHtml]="htmlToAdd" ></div>
-
-    <select>
-        <option  *ngFor="let a of liste$ ">
-          <a >{{ a.name }}</a>
+<pg-container extraHorizontalClass="bg-white" extraClass="bg-white">
+    <!-- START card -->
+    <div class="card card-transparent">
       
-        </option>
-      </select>
+      <div class="card-header ">
+        <div class="card-title">Centres de visite techniques les plus proches de vous 
+        </div>
+        <div class="pull-right" style="width: 150px;">
+            
+          </div>
+        <div class="clearfix"></div>
+      </div>
+      <div class="card-body">
+          <div #map id="map" ></div>
+      </div>
+    </div>
+    <!-- END card -->
+  </pg-container>
+
 
  
+   
+     
