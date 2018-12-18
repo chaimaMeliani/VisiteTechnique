@@ -44,9 +44,9 @@ loadMap(){
       position: pos,
       icon :"http://maps.google.com/mapfiles/ms/micons/blue-dot.png"
   });
-  this.map.setCenter(pos)
+  this.map.setCenter(pos);
     this.infoWindow.setPosition(pos);
-    this.infoWindow.setContent('Vous etes la');
+    this.infoWindow.setContent('Votre emplacement');
     this.infoWindow.open(this.map);
   
           let service = new google.maps.places.PlacesService(this.map);
