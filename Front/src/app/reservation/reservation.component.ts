@@ -28,7 +28,7 @@ export class ReservationComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-   
+    this.loadMap();
   }
   _advance_disabledDate(current: Date): boolean {
     //Future

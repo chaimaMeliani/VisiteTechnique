@@ -30,7 +30,7 @@ export class RegisterPageComponent implements OnInit {
   //formulaires
   clientForm: FormGroup;
   vehiculeForm :FormGroup ;
-
+typeImm=null;
 
     constructor( private fb: FormBuilder, private   data: MarqueService ) {
       //Recupperation de la liste des marques
