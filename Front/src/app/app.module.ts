@@ -60,7 +60,9 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
+import { pgTimePickerModule } from './@pages/components/time-picker/timepicker.module';
 
+import { pgDatePickerModule } from './@pages/components/datepicker/datepicker.module';
 //Sample Blank Pages - Optional
 import { BlankCorporateComponent } from './@pages/layouts/blank-corporate/blank-corporate.component';
 import { BlankSimplywhiteComponent } from './@pages/layouts/blank-simplywhite/blank-simplywhite.component';
@@ -70,6 +72,7 @@ import { VoituresComponent } from './voitures/voitures.component';
 import { pgSelectModule} from './@pages/components/select/select.module';
 import { HistoriquesComponent } from './historiques/historiques.component';
 import { InfoClientComponent } from './info-client/info-client.component';
+import { ReservationComponent } from './reservation/reservation.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -104,10 +107,13 @@ export class AppHammerConfig extends HammerGestureConfig  {
     VoituresComponent,
     HistoriquesComponent,
     InfoClientComponent,
+    ReservationComponent,
     
     
   ],
   imports: [
+    pgDatePickerModule,
+    pgTimePickerModule,
     pgSelectModule,
     NgxDatatableModule,
     BrowserModule,

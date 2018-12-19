@@ -19,7 +19,7 @@ export class CondensedComponent extends RootLayout implements OnInit {
       {
           label:"Reservation ",
           details:"en cours",
-          routerLink:"email/list",
+          routerLink:"reservation",
           iconType:"pg",
           iconName:"clock"
       },
