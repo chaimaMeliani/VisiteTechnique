@@ -26,7 +26,7 @@ export class CentresComponent implements OnInit {
 loadMap(){
 
   navigator.geolocation.getCurrentPosition((position) => {
-
+     
     let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
     this.infoWindow = new google.maps.InfoWindow();
     let mapOptions = {
@@ -70,6 +70,7 @@ loadMap(){
 callback(results, status) {
   if (status === google.maps.places.PlacesServiceStatus.OK) {
     for (var i = 0; i < results.length; i++) {
+      
       this.createMarker(results[i]);
     }
   }

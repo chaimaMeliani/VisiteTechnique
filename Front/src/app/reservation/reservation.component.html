@@ -60,7 +60,7 @@
                   <div class="form-group form-group-default required" [class.has-error]="modalEmplacement.invalid && (modalEmplacement.dirty || modalEmplacement.touched)" >
                       <label>Emplacement</label>
                       <pg-select  ShowSearch   class="form-control cs-select cs-skin-slide cs-transparent testClass" [PlaceHolder]="'Selectionner'"  [(ngModel)]="newEmplacement"  name="newEmplacement" #modalEmplacement="ngModel"  >
-                          <pg-option *ngFor="let a of liste$"  [Label]="a.name"   [Value]="a.name"> </pg-option>
+                          <pg-option *ngFor="let a of liste$"  [Label]="a.name"   [Value]="a.name"> {{a.name}}</pg-option>
                           </pg-select>
                       </div>
                 </div>

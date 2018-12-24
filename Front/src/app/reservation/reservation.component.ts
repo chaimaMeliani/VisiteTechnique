@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild  } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy  } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 @Component({
   selector: 'app-reservation',
@@ -23,9 +23,12 @@ export class ReservationComponent implements OnInit {
   heureRes = null;
   NewVoiture=null;
   newEmplacement=null;
-  liste$=null;
+  liste$;
+  node;
  /***************************/
-  constructor() { }
+  constructor() {
+   
+   }
 
   ngOnInit() {
     this.loadMap();
@@ -35,12 +38,11 @@ export class ReservationComponent implements OnInit {
     return current && current.getTime() < Date.now();
   }
   Charger(){
+    document.getElementsByTagName('head')[0].removeChild(this.node);
     this.selectVoitureModal.hide();
   }
 
-  ngAfterViewInit() {
-    this.loadMap();
-}
+ 
 loadMap(){
 
   navigator.geolocation.getCurrentPosition((position) => {
@@ -61,7 +63,10 @@ loadMap(){
       name: 'centre+de+visite+technique'
       
     }, (results, status) => {
-        this.callback(results, status)
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        console.log(results);
+        ReservationComponent.prototype.liste$ = results;
+      }
     });
 
   }, (err) => {
@@ -70,9 +75,4 @@ loadMap(){
 
 }
 
-callback(results, status) {
-  if (status === google.maps.places.PlacesServiceStatus.OK) {
-    ReservationComponent.prototype.liste$ = results;
-  }
-}
 }
