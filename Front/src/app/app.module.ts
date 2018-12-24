@@ -9,6 +9,8 @@ import { RouterModule } from '@angular/router';
 //Services
 import { MarqueService } from './services/marque.service';
 import { LoginService } from './services/login.service';
+import { ClientService } from './services/client.service';
+import { VehiculeService } from './services/vehicule.service';
 
 
 
@@ -142,7 +144,7 @@ export class AppHammerConfig extends HammerGestureConfig  {
     pgSwitchModule,
     QuillModule
   ],
-  providers: [QuickviewService,pagesToggleService,MarqueService,LoginService,{
+  providers: [QuickviewService,pagesToggleService,MarqueService,LoginService,ClientService,VehiculeService,{
     provide: PERFECT_SCROLLBAR_CONFIG,
     useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
   },

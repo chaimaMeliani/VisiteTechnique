@@ -115,10 +115,10 @@
                       </div>
                     </div>
                     <div class="col-sm-6">
-                      <div class="form-group form-group-default required" [class.has-error]="getFormControlV('numCateGrise').invalid && (getFormControlV('numCateGrise').dirty )">
+                      <div class="form-group form-group-default required" [class.has-error]="getFormControlV('numCarteGrise').invalid && (getFormControlV('numCarteGrise').dirty )">
                         <Label>Numero carte grise</Label>
-                        <input  pgFormGroupDefault type="text" class="form-control" name="numCateGrise" formControlName="numCateGrise">
-                        <div class="invalid-tooltip" *ngIf="getFormControlV('numCateGrise').invalid && (getFormControlV('numCateGrise').dirty) ">
+                        <input  pgFormGroupDefault type="text" class="form-control" name="numCarteGrise" formControlName="numCarteGrise">
+                        <div class="invalid-tooltip" *ngIf="getFormControlV('numCarteGrise').invalid && (getFormControlV('numCarteGrise').dirty) ">
                           Ce champ est obligatoire.
                         </div>
                       </div>
@@ -128,7 +128,7 @@
                     <div class="col-sm-6">
                       <div class="form-group form-group-default required form-group-default-select" >
                         <Label>Type Immatriculation</Label>
-                        <pg-select  class="testClass cs-select cs-skin-slide cs-transparent form-control" [(ngModel)]="typeImm"  [PlaceHolder]="'Select'" name="typeImm" formControlName="typeImm">
+                        <pg-select  class="testClass cs-select cs-skin-slide cs-transparent form-control" [(ngModel)]="typeImm"  [PlaceHolder]="'Select'" name="typeImm" formControlName="typeImmatriculation">
                           <pg-option Value="TU" Label="Série  Normal   (TU)">Série  Normal   (TU)</pg-option>
                           <pg-option Value="RS" Label="Régime suspensif (RS)" >Régime suspensif (RS)</pg-option>
                           <pg-option Value="MOTO" Label="Moto (MOTO)" >Moto (MOTO)</pg-option>

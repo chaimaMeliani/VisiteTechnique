@@ -7,6 +7,9 @@ import {
   ReactiveFormsModule
 } from '@angular/forms';
 import { MarqueService } from '../../services/marque.service';
+import { ClientService } from '../../services/client.service';
+import { VehiculeService } from '../../services/vehicule.service';
+
 import { Observable } from 'rxjs';
 @Component({
   selector: 'app-register-page',
@@ -32,15 +35,15 @@ export class RegisterPageComponent implements OnInit {
   vehiculeForm :FormGroup ;
 typeImm=null;
 
-    constructor( private fb: FormBuilder, private   data: MarqueService ) {
+    constructor( private fb: FormBuilder, private   data: MarqueService,private clientService:ClientService,private vehiculeService:VehiculeService ) {
       //Recupperation de la liste des marques
 	  this.data.getMarques().subscribe( data => this.marques$ = data['Results']
     );
     // initialisation du formulaire
     this.vehiculeForm = this.fb.group({
       numChassis :[ '', [ Validators.required ] ],
-      numCateGrise :[ '', [ Validators.required ] ],
-      typeImm :[ '', [ ] ],
+      numCarteGrise :[ '', [ Validators.required ] ],
+      typeImmatriculation :[ '', [ ] ],
       immatriculation :[ '', [ Validators.required  ] ],
       marque:[ '', [ Validators.required ] ],
 	  modele:[ '', [ Validators.required ] ]
@@ -64,7 +67,6 @@ typeImm=null;
   getModeles(){
 	  if(this.marque !== undefined){
 
-	  console.log(this.vehiculeForm);
 		this.data.getModeles(this.marque).subscribe(
       data => this.modeles$ = data["Results"]
     );
@@ -87,16 +89,19 @@ typeImm=null;
   // Enregistrement 
   submit(){
     if(!this.vehiculeForm.invalid){
-      console.log(this.clientForm.value);
-      console.log(this.vehiculeForm.value);
+      
+       this.clientService.newClient(this.clientForm.value);
+      
+      let v =Object.assign(this.vehiculeForm.value,{"client":this.clientForm.controls['cin'].value});
 
+      console.log(v);
+      this.vehiculeService.newVehicule(v);
     }
     else{
       this.vehiculeForm
     }
 
   }
-
 
   //Prev
   prevTab(){
