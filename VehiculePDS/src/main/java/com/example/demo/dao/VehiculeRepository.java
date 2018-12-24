@@ -4,6 +4,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.example.demo.entities.Vehicule;
 
-public interface VehiculeRepository extends MongoRepository<Vehicule, Long>{
+public interface VehiculeRepository extends MongoRepository<Vehicule, String>{
 
 }

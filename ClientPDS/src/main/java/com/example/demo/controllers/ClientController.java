@@ -14,7 +14,7 @@ import com.example.demo.dao.ClientRepository;
 import com.example.demo.entities.Client;
 import com.example.demo.entities.Reservation;
 
-@CrossOrigin(origins = { "http://localhost:4200" })
+
 @RestController
 public class ClientController {
 	@Autowired
@@ -27,7 +27,7 @@ public class ClientController {
 		
 	
 	
-	
+@CrossOrigin(origins ="http://localhost:4200")
 	@RequestMapping("/saveClient")
 	public Client saveclient(Client c) {
 		clientrepo.save(c);

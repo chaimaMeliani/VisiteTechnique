@@ -9,20 +9,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dao.VehiculeRepository;
 import com.example.demo.entities.Vehicule;
-@CrossOrigin(origins = { "http://localhost:4200" })
+
 @RestController
 public class VehiculeController {
 	@Autowired
 	private VehiculeRepository vehiculerepository;
 	
-
+	@CrossOrigin(origins ="http://localhost:4200")
 	@RequestMapping("/save")
 	public Vehicule savevehicule(Vehicule v)
 	{
 		vehiculerepository.save(v);
 		return v;
 	}
-	
+	@CrossOrigin(origins ="http://localhost:4200")
 	@RequestMapping("/all")
 	public List<Vehicule> getvehicules(){
 		
@@ -30,14 +30,14 @@ public class VehiculeController {
 	}
 	
 	@RequestMapping("/get")
-    public Vehicule getvehicule(Long numChassis)
+    public Vehicule getvehicule(String numChassis)
     {
 		return vehiculerepository.findById(numChassis).orElse(null);
 		
     }
 	
 	@RequestMapping("/delete")
-   public void  delete(Long numChassis )
+   public void  delete(String numChassis )
    {
 		vehiculerepository.deleteById(numChassis);
    }

@@ -6,10 +6,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class Vehicule {
 	@Id
-	private Long idVehicule;
+	private String idVehicule;
 	private String numChassis;
-	private String numCateGrise;
-	private String typeImm;
+	private String numCarteGrise;
+	private String typeImmatriculation;
 	private String immatriculation;
 	private String marque;
 	private String modele;
@@ -20,17 +20,17 @@ public class Vehicule {
 	public void setNumChassis(String numChassis) {
 		this.numChassis = numChassis;
 	}
-	public String getNumCateGrise() {
-		return numCateGrise;
+	public String getnumCarteGrise() {
+		return numCarteGrise;
 	}
-	public void setNumCateGrise(String numCateGrise) {
-		this.numCateGrise = numCateGrise;
+	public void setnumCarteGrise(String numCarteGrise) {
+		this.numCarteGrise = numCarteGrise;
 	}
-	public String getTypeImm() {
-		return typeImm;
+	public String getTypeImmatriculation() {
+		return typeImmatriculation;
 	}
-	public void setTypeImm(String typeImm) {
-		this.typeImm = typeImm;
+	public void setTypeImmatriculation(String typeImmatriculation) {
+		this.typeImmatriculation = typeImmatriculation;
 	}
 	public String getImmatriculation() {
 		return immatriculation;
@@ -51,18 +51,13 @@ public class Vehicule {
 		this.modele = modele;
 	}
 	
-	public Long getIdVehicule() {
-		return idVehicule;
-	}
-	public void setIdVehicule(Long idVehicule) {
-		this.idVehicule = idVehicule;
-	}
-	public Vehicule(String numChassis, String numCateGrise, String typeImm, String immatriculation, String marque,
+	
+	public Vehicule(String numChassis, String numCarteGrise, String typeImmatriculation, String immatriculation, String marque,
 			String modele) {
 		super();
 		this.numChassis = numChassis;
-		this.numCateGrise = numCateGrise;
-		this.typeImm = typeImm;
+		this.numCarteGrise = numCarteGrise;
+		this.typeImmatriculation = typeImmatriculation;
 		this.immatriculation = immatriculation;
 		this.marque = marque;
 		this.modele = modele;
@@ -77,12 +72,12 @@ public class Vehicule {
 	public void setClient(String client) {
 		this.client = client;
 	}
-	public Vehicule(String numChassis, String numCateGrise, String typeImm, String immatriculation, String marque,
+	public Vehicule(String numChassis, String numCarteGrise, String typeImmatriculation, String immatriculation, String marque,
 			String modele, String client) {
 		super();
 		this.numChassis = numChassis;
-		this.numCateGrise = numCateGrise;
-		this.typeImm = typeImm;
+		this.numCarteGrise = numCarteGrise;
+		this.typeImmatriculation = typeImmatriculation;
 		this.immatriculation = immatriculation;
 		this.marque = marque;
 		this.modele = modele;
