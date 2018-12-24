@@ -28,19 +28,19 @@ public class ClientController {
 	
 	
 	
-	@RequestMapping("/save")
+	@RequestMapping("/saveClient")
 	public Client saveclient(Client c) {
 		clientrepo.save(c);
 		return c;
 	}
 
-	@RequestMapping("/all")
+	@RequestMapping("/allClients")
 	public List<Client> getclients() {
 
 		return clientrepo.findAll();
 	}
 
-	@RequestMapping("/Clientpds")
+	@RequestMapping("/getClient/{id}")
 	public Optional<Client> getById(String id){		
 
 		Optional<Client> cmd= clientrepo.findById(id);

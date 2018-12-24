@@ -6,17 +6,18 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class Vehicule {
 	@Id
-	private Long numChassis;
+	private Long idVehicule;
+	private String numChassis;
 	private String numCateGrise;
 	private String typeImm;
 	private String immatriculation;
 	private String marque;
 	private String modele;
 	private String client;
-	public Long getNumChassis() {
+	public String getNumChassis() {
 		return numChassis;
 	}
-	public void setNumChassis(Long numChassis) {
+	public void setNumChassis(String numChassis) {
 		this.numChassis = numChassis;
 	}
 	public String getNumCateGrise() {
@@ -49,7 +50,14 @@ public class Vehicule {
 	public void setModele(String modele) {
 		this.modele = modele;
 	}
-	public Vehicule(Long numChassis, String numCateGrise, String typeImm, String immatriculation, String marque,
+	
+	public Long getIdVehicule() {
+		return idVehicule;
+	}
+	public void setIdVehicule(Long idVehicule) {
+		this.idVehicule = idVehicule;
+	}
+	public Vehicule(String numChassis, String numCateGrise, String typeImm, String immatriculation, String marque,
 			String modele) {
 		super();
 		this.numChassis = numChassis;
@@ -69,7 +77,7 @@ public class Vehicule {
 	public void setClient(String client) {
 		this.client = client;
 	}
-	public Vehicule(Long numChassis, String numCateGrise, String typeImm, String immatriculation, String marque,
+	public Vehicule(String numChassis, String numCateGrise, String typeImm, String immatriculation, String marque,
 			String modele, String client) {
 		super();
 		this.numChassis = numChassis;

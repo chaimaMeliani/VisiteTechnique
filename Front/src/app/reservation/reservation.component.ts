@@ -38,8 +38,7 @@ export class ReservationComponent implements OnInit {
     return current && current.getTime() < Date.now();
   }
   Charger(){
-    document.getElementsByTagName('head')[0].removeChild(this.node);
-    this.selectVoitureModal.hide();
+    
   }
 
  
