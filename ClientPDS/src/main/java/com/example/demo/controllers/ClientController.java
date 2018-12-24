@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,7 +14,7 @@ import com.example.demo.dao.ClientRepository;
 import com.example.demo.entities.Client;
 import com.example.demo.entities.Reservation;
 
-
+@CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
 public class ClientController {
 	@Autowired
