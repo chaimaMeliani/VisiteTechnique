@@ -12,6 +12,7 @@ public class Reservation {
 	private String Id_res;
 	private Date date_res;
 	private String etat;
+	private String emplacement;
 	private String client;
 	private String vehicule;
 	public String getId_res() {
@@ -43,6 +44,13 @@ public class Reservation {
 	}
 	public void setVehicule(String vehicule) {
 		this.vehicule = vehicule;
+	}
+	
+	public String getEmplacement() {
+		return emplacement;
+	}
+	public void setEmplacement(String emplacement) {
+		this.emplacement = emplacement;
 	}
 	public Reservation(String id_res, Date date_res, String etat, String client, String vehicule) {
 		super();
