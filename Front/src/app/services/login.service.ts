@@ -7,13 +7,24 @@ export class LoginService {
   constructor(private http:HttpClient) { }
 
   login(userName:string,password:string){
-    if ( userName === 'admin' && password === 'admin') {
-      localStorage.setItem('isLoggedIn', 'true');
-      return true;
-     }
-     else{
-       return false;
-     }
+    
+     return  this.http.get("http://localhost:9004/clientpds/find", {
+        params:{
+          "userName":userName,
+          "password":password
+        }
+      }).map((res: Response) => {
+        if (res === null){return false;}
+        else {
+          localStorage.setItem('isLoggedIn','true');
+          localStorage.setItem('idClient',res['idClient']);
+
+          return true;
+        }
+      });
+          
+    
+    
   }
   logout(){
     

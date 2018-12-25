@@ -9,7 +9,7 @@ import {
 import { MarqueService } from '../../services/marque.service';
 import { ClientService } from '../../services/client.service';
 import { VehiculeService } from '../../services/vehicule.service';
-
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 @Component({
   selector: 'app-register-page',
@@ -18,6 +18,7 @@ import { Observable } from 'rxjs';
 
 })
 export class RegisterPageComponent implements OnInit {
+  id:object;
   //tableau de types d'immatriculation 
   types = ['TU', 'PAT' , 'CMD', 'CD' , 'MD', 'MC', 'CC', 'PE'];
   disabledTabs = {
@@ -35,7 +36,8 @@ export class RegisterPageComponent implements OnInit {
   vehiculeForm :FormGroup ;
 typeImm=null;
 
-    constructor( private fb: FormBuilder, private   data: MarqueService,private clientService:ClientService,private vehiculeService:VehiculeService ) {
+    constructor( private fb: FormBuilder, private   data: MarqueService,private clientService:ClientService,
+      private vehiculeService:VehiculeService,public router: Router ) {
       //Recupperation de la liste des marques
 	  this.data.getMarques().subscribe( data => this.marques$ = data['Results']
     );
@@ -90,12 +92,13 @@ typeImm=null;
   submit(){
     if(!this.vehiculeForm.invalid){
       
-       this.clientService.newClient(this.clientForm.value);
+      this.clientService.newClient(this.clientForm.value).subscribe((data)=>{
+         this.id = data['idClient'] ;
+         let v =Object.assign(this.vehiculeForm.value,{"client":this.id});
+         this.vehiculeService.newVehicule(v);
+         this.router.navigate(['/app/login']);
+        });
       
-      let v =Object.assign(this.vehiculeForm.value,{"client":this.clientForm.controls['cin'].value});
-
-      console.log(v);
-      this.vehiculeService.newVehicule(v);
     }
     else{
       this.vehiculeForm

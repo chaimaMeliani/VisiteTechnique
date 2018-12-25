@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import { ClientService } from '../services/client.service';
+
 @Component({
   selector: 'app-info-client',
   templateUrl: './info-client.component.html',
@@ -7,26 +9,24 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 })
 export class InfoClientComponent implements OnInit {
   @ViewChild('addNewAppModal') addNewAppModal: ModalDirective;
-  nomPrenom= null;
-  cin= null;
-  permis= null;
-  userName=null;
+  client:object={ }
   password=null;
-  constructor() { 
+  constructor(private clientService:ClientService) { 
     
   }
 
   ngOnInit() {
-    this.nomPrenom="nom prenom";
-    this.cin= "12345678";
-    this.permis= "987654321";
-    this.userName="user name"; 
+    this.clientService.get().subscribe((data)=>{ this.client = data});
+     
   }
   showModal(){
     this.addNewAppModal.show();
   }
   submit(){
     console.log(this.password);
+    this.client['password']=this.password;
+    delete this.client['reslist'];delete this.client['vehiculeslist'];
+    this.clientService.updatePWd(this.client).subscribe((data)=>{ this.client = data});
     this.addNewAppModal.hide();
   }
 }

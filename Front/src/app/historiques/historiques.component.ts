@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {DatatableComponent} from '@swimlane/ngx-datatable';
+import { ClientService } from '../services/client.service';
 @Component({
   selector: 'app-historiques',
   templateUrl: './historiques.component.html',
@@ -7,7 +8,7 @@ import {DatatableComponent} from '@swimlane/ngx-datatable';
 })
 export class HistoriquesComponent implements OnInit {
   //la liste des voitures
-  voitures$ = ["v1" , "v2"];
+  voitures$ = [];
 
   voiture=null;
   //Tableau 
@@ -23,9 +24,10 @@ export class HistoriquesComponent implements OnInit {
   @ViewChild(DatatableComponent) tableDynamic: DatatableComponent;
   scrollBarHorizontal = (window.innerWidth < 960);
   columnModeSetting = (window.innerWidth < 960) ? 'standard':'force';
-  constructor() { }
+  constructor(private clientService:ClientService) { }
 
   ngOnInit() {
+    this.clientService.get().subscribe((data)=>{ this.voitures$ = data['vehiculeslist'];console.log(this.voitures$);});
   }
 
   filterChanged(){

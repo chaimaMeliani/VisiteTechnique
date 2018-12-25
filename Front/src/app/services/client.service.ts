@@ -7,18 +7,34 @@ export class ClientService {
   constructor(private http:HttpClient) { }
 
   newClient(client){
-    this.http.get("http://localhost:9004/clientpds/saveClient", {
+  return this.http.get("http://localhost:9004/clientpds/saveClient", {
       params:client
-    })
-        .subscribe(
-            data => {
-              console.log("POST Request is successful ", data);
-                
-            },
-            error => {
-                console.log("Error", error);
-            }
-        );
+    }).map((res: Response) => {
+      return res;
+    });
   }
-
+  get(){
+    
+    return  this.http.get("http://localhost:9004/clientpds/getClient", {
+       params:{
+         "id":localStorage.getItem('idClient')
+       }
+     }).map((res: Response) => {
+       return res;
+     });
+         
+   
+   
+ }
+ updatePWd(client){
+    
+  return  this.http.get("http://localhost:9004/clientpds/updateClient", {
+     params:client
+   }).map((res: Response) => {
+     return res;
+   });
+       
+ 
+ 
+}
 }

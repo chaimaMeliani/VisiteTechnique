@@ -54,15 +54,21 @@
                 <div class="col-md-12">
                   <div class="form-group form-group-default">
                     <label>Nom d'utilisateur</label>
-                    <input type="text" class="info form-control"  [(ngModel)]="userName" name="userName" readonly>
+                    <input type="text" class="info form-control"  [(ngModel)]="client.userName" name="userName" readonly >
                   </div>
                 </div>
               </div>
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
               <div class="form-group form-group-default">
-                <label>Nom et prenom</label>
-                <input type="text" class="info form-control"  [(ngModel)]="nomPrenom" name="nomPrenom" readonly>
+                <label>Prenom</label>
+                <input type="text" class="info form-control"  [(ngModel)]="client.firstName" name="firstName" readonly>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group form-group-default">
+                <label>Nom</label>
+                <input type="text" class="info form-control"  [(ngModel)]="client.lastName" name="lasttName" readonly>
               </div>
             </div>
           </div>
@@ -70,13 +76,13 @@
             <div class="col-md-6">
               <div class="form-group form-group-default">
                 <label>CIN</label>
-                <input type="text" class="info form-control" [(ngModel)]="cin" name="cin" readonly>
+                <input type="text" class="info form-control" [(ngModel)]="client.cin" name="cin" readonly>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group form-group-default">
                 <label>Num permis</label>
-                <input type="text" class=" info form-control" [(ngModel)]="permis" name="permis" readonly>
+                <input type="text" class=" info form-control" [(ngModel)]="client.permis" name="permis" readonly>
               </div>
             </div>
           </div>

@@ -11,7 +11,7 @@
                     <div class="form-group form-group-default " >
                            
                            <pg-select  ShowSearch   class="form-control cs-select cs-skin-slide cs-transparent testClass" [PlaceHolder]="'Filtrer par'"  [(ngModel)]="voiture"    name="voiture" (ngModelChange)="filterChanged()" >
-                            <pg-option *ngFor="let v of voitures$"  [Label]="v"   [Value]="v"> </pg-option>
+                            <pg-option *ngFor="let v of voitures$"  [Label]="v.numChassis"   [Value]="v.idVehicule"> </pg-option>
         
                             </pg-select>
                           </div>

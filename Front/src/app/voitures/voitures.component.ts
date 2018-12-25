@@ -3,6 +3,7 @@ import {DatatableComponent} from '@swimlane/ngx-datatable';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { MarqueService } from '../services/marque.service';
 import { VehiculeService } from '../services/vehicule.service';
+import { ClientService } from '../services/client.service';
 
 @Component({
   selector: 'app-voitures',
@@ -43,17 +44,12 @@ export class VoituresComponent implements OnInit {
   scrollBarHorizontal = (window.innerWidth < 960);
   columnModeSetting = (window.innerWidth < 960) ? 'standard':'force';
   placeholder=""
-  constructor( private   data: MarqueService ,private vehiculeService:VehiculeService ) {
+  constructor( private   data: MarqueService ,private vehiculeService:VehiculeService ,private clientService:ClientService) {
      //Recupperation de la liste des marques
 	  this.data.getMarques().subscribe( data => this.marques$ = data['Results']
     );
-    this.vehiculeService.getAll().subscribe( data =>  this.dynamicRows = data
-    );
-    console.log(this.dynamicRows);
-  /*  this.fetchSampleDynamic((data) => {
-      // push our inital complete list
-      this.dynamicRows = data;
-    });*/
+    this.clientService.get().subscribe((data)=>{ this.dynamicRows = data['vehiculeslist']});
+   
    }
 
   ngOnInit() {
@@ -75,9 +71,11 @@ export class VoituresComponent implements OnInit {
       "typeImmatriculation" : this.typeImmatriculation,
       "immatriculation":  this.immatriculation,
       "marque" : this.marque,
-      "modele":  this.modele
+      "modele":  this.modele,
+      "client":localStorage.getItem('idClient')
     }
-    
+    console.log(temp);
+    this.vehiculeService.newVehicule(temp);
     this.dynamicRows = [...this.dynamicRows, temp];
     this.addNewAppModal.hide();
   }

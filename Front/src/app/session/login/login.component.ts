@@ -11,17 +11,16 @@ export class LoginComponent implements OnInit {
   // Sample Varriables
   userName;
   password;
-  correct: boolean;
+  correct;
   constructor(public router: Router,private loginService:LoginService) { }
 
   ngOnInit() {
     this.correct = true;
   }
   onSubmit() {
-    var res = this.loginService.login(this.userName , this.password);
-    if (res) {
-     this.router.navigate(['/app']);
-    }  else { this.correct = false; }
-
+    this.loginService.login(this.userName , this.password).subscribe((data)=>{ this.correct = data
+    if(this.correct){this.router.navigate(['/app']);}
+    });
+    console.log(this.correct);
   }
 }
