@@ -25,7 +25,7 @@ public class ReservationController {
 	}
 
 	@GetMapping("/reserv/{id}")
-	public List<Reservation> getBycommande(@PathVariable("id") String d) {
+	public List<Reservation> getByClient(@PathVariable("id") String d) {
 
 		List<Reservation> Lres = this.reservationrepo.findByClient(d);
 		return Lres;

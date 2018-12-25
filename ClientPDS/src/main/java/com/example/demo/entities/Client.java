@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class Client {
 @Id
-private String IdClient;
+private String idClient;
 private String firstName ;
 private String lastName ;
 private String cin ;
@@ -55,10 +55,10 @@ public void setPassword(String password) {
 }
 
 public String getIdClient() {
-	return IdClient;
+	return idClient;
 }
 public void setIdClient(String idClient) {
-	IdClient = idClient;
+	this.idClient = idClient;
 }
 public Client() {
 	super();
@@ -72,7 +72,7 @@ public void setReslist(List<Reservation> reslist) {
 }
 public Client(String idClient, String firstName) {
 	super();
-	IdClient = idClient;
+	this.idClient = idClient;
 	this.firstName = firstName;
 }
 public List<Vehicule> getVehiculeslist() {

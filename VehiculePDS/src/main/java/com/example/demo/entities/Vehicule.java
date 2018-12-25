@@ -20,12 +20,6 @@ public class Vehicule {
 	public void setNumChassis(String numChassis) {
 		this.numChassis = numChassis;
 	}
-	public String getnumCarteGrise() {
-		return numCarteGrise;
-	}
-	public void setnumCarteGrise(String numCarteGrise) {
-		this.numCarteGrise = numCarteGrise;
-	}
 	public String getTypeImmatriculation() {
 		return typeImmatriculation;
 	}
@@ -71,6 +65,19 @@ public class Vehicule {
 	}
 	public void setClient(String client) {
 		this.client = client;
+	}
+	
+	public String getIdVehicule() {
+		return idVehicule;
+	}
+	public void setIdVehicule(String idVehicule) {
+		this.idVehicule = idVehicule;
+	}
+	public String getNumCarteGrise() {
+		return numCarteGrise;
+	}
+	public void setNumCarteGrise(String numCarteGrise) {
+		this.numCarteGrise = numCarteGrise;
 	}
 	public Vehicule(String numChassis, String numCarteGrise, String typeImmatriculation, String immatriculation, String marque,
 			String modele, String client) {

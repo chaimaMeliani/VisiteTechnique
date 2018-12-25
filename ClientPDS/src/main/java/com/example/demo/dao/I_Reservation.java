@@ -1,4 +1,4 @@
-package com.example.demo.com;
+package com.example.demo.dao;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import com.example.demo.entities.Reservation;
 
 
 
-@FeignClient("reservation-service")
+@FeignClient("ReservationPDS")
 public interface I_Reservation {
 	@RequestMapping(method = RequestMethod.GET, value = "/reserv/{id}")
     List<Reservation> GetReservation(@PathVariable("id") String id);

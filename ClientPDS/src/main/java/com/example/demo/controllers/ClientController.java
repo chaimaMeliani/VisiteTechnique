@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.com.I_Reservation;
+import com.example.demo.dao.I_Reservation;
+import com.example.demo.dao.I_Vehicule;
 import com.example.demo.dao.ClientRepository;
 import com.example.demo.entities.Client;
 import com.example.demo.entities.Reservation;
+import com.example.demo.entities.Vehicule;
 
 
 @RestController
@@ -25,9 +27,10 @@ public class ClientController {
 		@Autowired
 	private I_Reservation lc;
 		
+		@Autowired
+		private I_Vehicule vh;
 	
-	
-@CrossOrigin(origins ="http://localhost:4200")
+
 	@RequestMapping("/saveClient")
 	public Client saveclient(Client c) {
 		clientrepo.save(c);
@@ -39,14 +42,21 @@ public class ClientController {
 
 		return clientrepo.findAll();
 	}
+	@RequestMapping("/find")
+	public Client getByLoginPassword(String userName,String password) {
 
-	@RequestMapping("/getClient/{id}")
+		return clientrepo.findByUserNameAndPassword(userName, password);
+	}
+	@RequestMapping("/getClient")
 	public Optional<Client> getById(String id){		
 
-		Optional<Client> cmd= clientrepo.findById(id);
-		List<Reservation> lgnes=lc.GetReservation(id);
-		cmd.get().setReslist(lgnes);
-		return cmd;
+		Optional<Client> c= clientrepo.findByIdClient(id);
+		//List<Reservation> lgnes=lc.GetReservation(id);
+		List<Vehicule> vhs = vh.GetVehicules(id);
+		System.out.println(vhs);
+		c.get().setVehiculeslist(vhs);
+	//	c.get().setReslist(lgnes);
+		return c;
 	}
 	
 	
@@ -61,6 +71,10 @@ public class ClientController {
 		}
 		return array;
 
+	}
+	@RequestMapping("/updateClient")
+	public Client update(Client c){
+		return clientrepo.save(c);
 	}
 	
 }
