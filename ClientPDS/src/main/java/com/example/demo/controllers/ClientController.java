@@ -51,11 +51,11 @@ public class ClientController {
 	public Optional<Client> getById(String id){		
 
 		Optional<Client> c= clientrepo.findByIdClient(id);
-		//List<Reservation> lgnes=lc.GetReservation(id);
+	   List<Reservation> lgnes=lc.GetReservation(id);
 		List<Vehicule> vhs = vh.GetVehicules(id);
 		System.out.println(vhs);
 		c.get().setVehiculeslist(vhs);
-	//	c.get().setReslist(lgnes);
+		c.get().setReslist(lgnes);
 		return c;
 	}
 	

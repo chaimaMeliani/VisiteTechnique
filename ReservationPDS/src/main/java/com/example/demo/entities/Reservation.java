@@ -9,30 +9,26 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Reservation {
 
 	@Id
-	private String Id_res;
-	private Date date_res;
-	private String etat;
+	private String id;
+	private Date dateReservation;
 	private String emplacement;
 	private String client;
 	private String vehicule;
-	public String getId_res() {
-		return Id_res;
+	
+	public String getId() {
+		return id;
 	}
-	public void setId_res(String id_res) {
-		Id_res = id_res;
+	public void setId(String id) {
+		this.id = id;
 	}
-	public Date getDate_res() {
-		return date_res;
+	
+	public Date getDateReservation() {
+		return dateReservation;
 	}
-	public void setDate_res(Date date_res) {
-		this.date_res = date_res;
+	public void setDateReservation(Date dateReservation) {
+		this.dateReservation = dateReservation;
 	}
-	public String getEtat() {
-		return etat;
-	}
-	public void setEtat(String etat) {
-		this.etat = etat;
-	}
+
 	public String getClient() {
 		return client;
 	}
@@ -52,24 +48,23 @@ public class Reservation {
 	public void setEmplacement(String emplacement) {
 		this.emplacement = emplacement;
 	}
-	public Reservation(String id_res, Date date_res, String etat, String client, String vehicule) {
+	public Reservation(String id_res, Date date_res, String client, String vehicule) {
 		super();
-		Id_res = id_res;
-		this.date_res = date_res;
-		this.etat = etat;
+		this.id = id_res;
+		this.dateReservation = date_res;
+		this.client = client;
+		this.vehicule = vehicule;
+	}
+	
+	public Reservation(Date date_res, String client, String vehicule) {
+		super();
+		this.dateReservation = date_res;
 		this.client = client;
 		this.vehicule = vehicule;
 	}
 	public Reservation() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-	public Reservation(Date date_res, String etat, String client, String vehicule) {
-		super();
-		this.date_res = date_res;
-		this.etat = etat;
-		this.client = client;
-		this.vehicule = vehicule;
 	}
 	
 	
