@@ -5,7 +5,7 @@
         <div class="modal-header clearfix ">
           <button type="button" class="close" (click)="addNewAppModal.hide()" aria-hidden="true"><i class="pg pg-close fs-14"></i>
           </button>
-          <h4 class="p-b-5"><span class="semi-bold">Nouvelle</span> Voiture</h4>
+          <h4 class="p-b-5"><span class="semi-bold">Nouveau</span> vehicule</h4>
         </div>
         <div class="modal-body">
           <p class="small-text">Créez une nouvelle voiture à l'aide de ce formulaire, assurez-vous de toutes les remplir</p>
@@ -88,17 +88,42 @@
     </div>
     <!-- /.modal-dialog -->
   </div>
- 
+  <div bsModal #deleteModal="bs-modal" class="modal fade stick-up" tabindex="-1" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header clearfix ">
+          <button type="button" class="close" (click)="deleteModal.hide()" aria-hidden="true"><i class="pg pg-close fs-14"></i>
+          </button>
+          <h4 class="p-b-5"><span class="semi-bold">Suppression</span> vehicule</h4>
+        </div>
+        <div class="modal-body">
+            <li *ngIf="!selected.length">No Selections</li>
+          <p class="small-text" *ngIf="selected.length">Voulez vous supprimer le vehicule  {{selected[0]['marque']}} {{selected[0]['modele']}}</p>
+         
+        </div>
+        <div class="modal-footer">
+          <button id="add-app" type="button" class="btn btn-primary  btn-cons" (click)="delete()"  >Confirmer</button>
+          <button type="button" class="btn btn-cons" (click)=" selected = [];deleteModal.hide()">Annuler</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <alert *ngIf="erreur" type="danger" [dismissible]="true">
+      <strong>Alerte: </strong>Vous ne pouvez pas supprimer le vehicule
+    </alert>
 <pg-container extraHorizontalClass="bg-white" extraClass="bg-white">
+  
   <!-- START card -->
   <div class="card card-transparent">
     
     <div class="card-header ">
-      <div class="card-title">La liste des voitures
+      <div class="card-title">La liste des vehicules
       </div>
       <div class="pull-right">
         <div class="col-xs-12">
-          <button (click)="showModal()"  class="btn btn-primary btn-cons"><i class="fa fa-plus"></i> Ajouter une voiture
+          <button (click)="showModal()"  class="btn btn-primary btn-cons"><i class="fa fa-plus"></i> Ajouter un vehicule
           </button>
         </div>
       </div>
@@ -117,10 +142,15 @@
           [footerHeight]="50"
           [rowHeight]="'auto'"
           [limit]="10"
-          [rows]='dynamicRows'>
+          [rows]='dynamicRows'
+          [selected]="selected"
+          [selectionType]="'single'"
+          (select)='onSelect($event)'>
+          
           </ngx-datatable>
         </div>
     </div>
   </div>
+  
   <!-- END card -->
 </pg-container>

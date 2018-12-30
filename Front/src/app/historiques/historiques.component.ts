@@ -13,25 +13,40 @@ export class HistoriquesComponent implements OnInit {
   voiture=null;
   //Tableau 
   columnsDynamic = [
-    { name: 'Id' },
-    { name: 'Voiture' },
-    { name: 'Date reservation' },
+    
+    { name: 'Vehicule' },
+    { name: 'Date Reservation' },
     { name: 'Emplacement' },
-    { name: 'Etat' },
     
   ];
   dynamicRows = [];
+  backup =[];
   @ViewChild(DatatableComponent) tableDynamic: DatatableComponent;
   scrollBarHorizontal = (window.innerWidth < 960);
   columnModeSetting = (window.innerWidth < 960) ? 'standard':'force';
   constructor(private clientService:ClientService) { }
 
   ngOnInit() {
-    this.clientService.get().subscribe((data)=>{ this.voitures$ = data['vehiculeslist'];console.log(this.voitures$);});
+    this.clientService.get().subscribe((data)=>{ this.voitures$ = data['vehiculeslist'];this.dynamicRows = data['reslist'];
+    this.dynamicRows.forEach(element => {
+      let a = this.voitures$.find(x => x.idVehicule === element['vehicule']);
+      element['vehicule']= a['numChassis']+'_'+a['marque']+'_'+a['modele'];
+      let date =new Date(element['dateReservation']);
+      
+      element['dateReservation']=date;
+    });
+    this.dynamicRows =this.dynamicRows.filter(x => new Date (x.dateReservation) <= new Date());
+    this.backup = this.dynamicRows;
+   });
+    
   }
-
+  refresh(){
+    this.dynamicRows =this.backup;
+    this.voiture=null;
+  }
   filterChanged(){
-    console.log('value is ',this.voiture);
+    
+    this.dynamicRows =this.backup.filter(x => x.vehicule === this.voiture)
  
     }
 }

@@ -12,6 +12,7 @@ import { ClientService } from '../services/client.service';
 })
 export class VoituresComponent implements OnInit {
   @ViewChild('addNewAppModal') addNewAppModal: ModalDirective;
+  @ViewChild('deleteModal') deleteModal: ModalDirective;
   // popup formulaire
   // tableau des types des immatculations
   types = ['TU', 'PAT' , 'CMD', 'CD' , 'MD', 'MC', 'CC', 'PE'];
@@ -37,9 +38,12 @@ export class VoituresComponent implements OnInit {
     { name: 'Immatriculation' },
     { name: 'Marque' },
     { name: 'Modele' },
+    
   ];
   dynamicRows ;
+  selected = [];
   liste;
+  erreur=false;
   @ViewChild(DatatableComponent) tableDynamic: DatatableComponent;
   scrollBarHorizontal = (window.innerWidth < 960);
   columnModeSetting = (window.innerWidth < 960) ? 'standard':'force';
@@ -51,7 +55,21 @@ export class VoituresComponent implements OnInit {
     this.clientService.get().subscribe((data)=>{ this.dynamicRows = data['vehiculeslist']});
    
    }
+   onSelect({ selected }) {
+    this.deleteModal.show();
+    
+  }
+  delete(){
+    if(this.dynamicRows.length == 1){
+    this.erreur =true;
+  }
+    else{
+     this.vehiculeService.deleteVehicule(this.selected[0]['idVehicule']);
+    this.clientService.get().subscribe((data)=>{ this.dynamicRows = data['vehiculeslist']}); }
+    this.selected = [];
+   this.deleteModal.hide();
 
+  }
   ngOnInit() {
   }
   getModeles(){

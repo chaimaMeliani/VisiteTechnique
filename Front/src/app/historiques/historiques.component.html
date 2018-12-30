@@ -5,17 +5,19 @@
           <div class="card-header ">
             <div class="card-title">Historique des reservations 
             </div>
-            <div class="pull-right" style="width: 150px;">
+            <button (click)="refresh()" type="button" class="btn btn-default" style="float:right;padding:11px;"><i class="fa fa-refresh"></i> </button>
+            <div class="pull-right" style="width:300px;">
               <div class="col-xs-12">
-                 
+                  
                     <div class="form-group form-group-default " >
-                           
+                       
                            <pg-select  ShowSearch   class="form-control cs-select cs-skin-slide cs-transparent testClass" [PlaceHolder]="'Filtrer par'"  [(ngModel)]="voiture"    name="voiture" (ngModelChange)="filterChanged()" >
-                            <pg-option *ngFor="let v of voitures$"  [Label]="v.numChassis"   [Value]="v.idVehicule"> </pg-option>
+                            <pg-option *ngFor="let v of voitures$"  [Label]="v.numChassis+'_'+v.marque+'_'+v.modele"   [Value]="v.numChassis+'_'+v.marque+'_'+v.modele"> </pg-option>
         
                             </pg-select>
+                           
                           </div>
-                        
+                       
               </div>
             </div>
             

@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   }
   onSubmit() {
     this.loginService.login(this.userName , this.password).subscribe((data)=>{ this.correct = data
-    if(this.correct){this.router.navigate(['/app']);}
+    if(this.correct){this.router.navigate(['/app/Home']);}
     });
     console.log(this.correct);
   }

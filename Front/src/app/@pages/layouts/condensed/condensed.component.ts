@@ -11,7 +11,7 @@ export class CondensedComponent extends RootLayout implements OnInit {
     menuLinks = [
       {
         label:"Dashboard",
-        routerLink:"dashboard",
+        routerLink:"Home",
         iconType:"pg",
         iconName:"home",
         thumbNailClass:"bg-success"
@@ -23,13 +23,7 @@ export class CondensedComponent extends RootLayout implements OnInit {
           iconType:"pg",
           iconName:"clock"
       },
-      {
-        label:"Centres de ",
-        details:"visites techniques",
-        routerLink:"centres",
-        iconType:"pg",
-        iconName:"map"
-      },
+      
       {
           label:"Historiques",
           routerLink:"historiques",

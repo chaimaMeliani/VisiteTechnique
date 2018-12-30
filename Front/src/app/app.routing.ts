@@ -34,7 +34,7 @@ export const AppRoutes: Routes = [
     path: 'app',
     component: CondensedComponent,
     children: [{
-      path: 'centres',
+      path: 'Home',
       component: CentresComponent
     }],
   },

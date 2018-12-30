@@ -21,6 +21,23 @@ export class VehiculeService {
             }
         );
   }
+  deleteVehicule(id){
+
+    this.http.get("http://localhost:9004/vehiculepds/delete", {
+      params:{
+        'numChassis':id
+      }
+    })
+        .subscribe(
+            data => {
+              console.log("Delete Request is successful ");
+                
+            },
+            error => {
+                console.log("Error", error);
+            }
+        );
+  }
   getAll(){
     let l = this.http.get("http://localhost:9004/vehiculepds/all");
    console.log(l);

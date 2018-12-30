@@ -73,6 +73,14 @@ callback(results, status) {
       
       this.createMarker(results[i]);
     }
+  } else {
+    if(JSON.parse(localStorage.getItem("emp")) !== null){
+      let liste = JSON.parse(localStorage.getItem("emp"));
+      for (var i = 0; i < liste.length; i++) {
+      
+        this.createMarker(liste[i]);
+      }
+    }
   }
 }
 

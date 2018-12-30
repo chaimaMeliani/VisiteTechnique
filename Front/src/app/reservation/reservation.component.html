@@ -15,7 +15,7 @@
                   <div class="form-group form-group-default "  >
                       <label>Voiture</label>
                       <pg-select  ShowSearch   class="form-control cs-select cs-skin-slide cs-transparent testClass" [PlaceHolder]="'Filtrer par'"  [(ngModel)]="voiture"    name="voiture"  >
-                          <pg-option *ngFor="let v of voitures$"  [Label]="v"   [Value]="v"> </pg-option>
+                        <pg-option *ngFor="let v of voitures$"  [Label]="v.numChassis+'_'+v.marque+'_'+v.modele"   [Value]="v"> </pg-option>
       
                           </pg-select></div>
                 </div>
@@ -49,10 +49,11 @@
                   <div class="form-group form-group-default required" [class.has-error]="modalVoiture.invalid && (modalVoiture.dirty || modalVoiture.touched)" >
                       <label>Voiture</label>
                       <pg-select  ShowSearch   class="form-control cs-select cs-skin-slide cs-transparent testClass" [PlaceHolder]="'Selectionner'"  [(ngModel)]="NewVoiture"    name="NewVoiture" #modalVoiture="ngModel"  >
-                          <pg-option *ngFor="let v of voitures$"  [Label]="v"   [Value]="v"> </pg-option>
+                        <pg-option *ngFor="let v of voitures$"  [Label]="v.numChassis+'_'+v.marque+'_'+v.modele"   [Value]="v.idVehicule"> </pg-option>
                           </pg-select>
                         </div>
                     </div>
+                   
                 </div>
               
               <div class="row">
@@ -84,7 +85,7 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button id="add-app" type="button" class="btn btn-primary  btn-cons"  [class.disabled]="basicForm.invalid" >Ajouter</button>
+            <button id="add-app" type="button" class="btn btn-primary  btn-cons" (click)="newReservation()"  [class.disabled]="basicForm.invalid" >Ajouter</button>
             <button type="button" class="btn btn-cons" (click)="addNewAppModal.hide()">Fermer</button>
           </div>
         </div>
@@ -132,7 +133,10 @@
       <div class="clearfix"></div>
     </div>
     <div class="card-body" style="padding: 50px 100px;">
-        <form role="form">
+        <alert *ngIf="currentRes === undefined" type="danger" [dismissible]="false">
+            Aucune Reservation en cours pour  <strong>{{voiture.numChassis+'_'+voiture.marque+'_'+voiture.modele}} </strong> vous pouvez choisir un autre vehicule
+          </alert>
+       <form role="form" *ngIf="currentRes !== undefined">
           <div class="form-group-attached">
             
             
@@ -146,25 +150,28 @@
               <div class="col-md-6">
                 <div class="form-group form-group-default">
                   <label>Voiture</label>
-                  <input type="text" class=" info form-control" [(ngModel)]="voiture" name="voiture" readonly>
+                  <input type="text" class=" info form-control" [(ngModel)]="voiture.numChassis+'_'+voiture.marque+'_'+voiture.modele" name="voiture" readonly>
                 </div>
               </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                   <div class="form-group form-group-default">
                     <label>Date de reservation</label>
                     <input type="text" class="info form-control" [(ngModel)]="date" name="date" readonly>
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <div class="form-group form-group-default">
-                    <label>Emplacement</label>
-                    <input type="text" class=" info form-control" [(ngModel)]="emplacement" name="emplacement" readonly>
+               
+              </div>
+              <div class="row">
+                 
+                  <div class="col-md-12">
+                    <div class="form-group form-group-default">
+                      <label>Emplacement</label>
+                      <input type="text" class=" info form-control" [(ngModel)]="emplacement" name="emplacement" readonly>
+                    </div>
                   </div>
                 </div>
-              </div>
-            
           </div>
         </form>
       </div>
