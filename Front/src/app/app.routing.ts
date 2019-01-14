@@ -16,11 +16,13 @@ import { VoituresComponent } from './voitures/voitures.component';
 import { HistoriquesComponent } from './historiques/historiques.component';
 import { InfoClientComponent } from './info-client/info-client.component';
 import { ReservationComponent} from './reservation/reservation.component';
+import { AuthGuard } from "./auth.guard";
 export const AppRoutes: Routes = [
   {
     path: 'app',
 
-  component: CondensedComponent
+  component: CondensedComponent,
+  canActivate: [AuthGuard]
 },
   {
     path: 'app',
@@ -33,9 +35,11 @@ export const AppRoutes: Routes = [
   {
     path: 'app',
     component: CondensedComponent,
+    
     children: [{
       path: 'Home',
-      component: CentresComponent
+      component: CentresComponent,
+      canActivate: [AuthGuard]
     }],
   },
   {
@@ -43,7 +47,8 @@ export const AppRoutes: Routes = [
     component: CondensedComponent,
     children: [{
       path: 'voitures',
-      component: VoituresComponent
+      component: VoituresComponent,
+      canActivate: [AuthGuard]
     }],
   },
   {
@@ -51,7 +56,8 @@ export const AppRoutes: Routes = [
     component: CondensedComponent,
     children: [{
       path: 'historiques',
-      component: HistoriquesComponent
+      component: HistoriquesComponent,
+      canActivate: [AuthGuard]
     }],
   },
   {
@@ -59,7 +65,8 @@ export const AppRoutes: Routes = [
     component: CondensedComponent,
     children: [{
       path: 'infoClient',
-      component: InfoClientComponent
+      component: InfoClientComponent,
+      canActivate: [AuthGuard]
     }],
   },
   {
@@ -67,7 +74,8 @@ export const AppRoutes: Routes = [
     component: CondensedComponent,
     children: [{
       path: 'reservation',
-      component: ReservationComponent
+      component: ReservationComponent,
+      canActivate: [AuthGuard]
     }],
   }
 ];

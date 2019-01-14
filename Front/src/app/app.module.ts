@@ -35,7 +35,8 @@ import { SharedModule } from './@pages/components/shared.module';
 import { pgListViewModule} from './@pages/components/list-view/list-view.module';
 import { pgCardModule} from './@pages/components/card/card.module';
 import { pgCardSocialModule} from './@pages/components/card-social/card-social.module';
-
+//Ngx-Charts
+import {NgxChartsModule} from '@swimlane/ngx-charts';
 //app Comp
 import { AppHeaderComponent } from './app-header/app-header.component';
 //Basic Bootstrap Modules
@@ -76,6 +77,7 @@ import { pgSelectModule} from './@pages/components/select/select.module';
 import { HistoriquesComponent } from './historiques/historiques.component';
 import { InfoClientComponent } from './info-client/info-client.component';
 import { ReservationComponent } from './reservation/reservation.component';
+import { AuthGuard } from "./auth.guard";
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -143,9 +145,10 @@ export class AppHammerConfig extends HammerGestureConfig  {
     pgTabsModule,
     PerfectScrollbarModule,
     pgSwitchModule,
-    QuillModule
+    QuillModule,
+    NgxChartsModule
   ],
-  providers: [QuickviewService,pagesToggleService,MarqueService,LoginService,ClientService,VehiculeService,ReservationService,{
+  providers: [QuickviewService,pagesToggleService,MarqueService,LoginService,ClientService,VehiculeService,ReservationService,AuthGuard,{
     provide: PERFECT_SCROLLBAR_CONFIG,
     useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
   },

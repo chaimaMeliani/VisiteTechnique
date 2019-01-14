@@ -12,4 +12,23 @@ export class ReservationService {
         return res;
       });
     }
+    existe(date,emp){
+      return this.http.get("http://localhost:9004/reservationpds/reserationExiste", {
+          params:{
+            "date":date,
+            "emp":emp
+          }
+        }).map((res: Response) => {
+          return res;
+        });
+      }
+    statistique(){
+      return this.http.get("http://localhost:9004/reservationpds/statistique", {
+          params:{
+            "id":localStorage.getItem('idClient')
+          }
+        }).map((res: Response) => {
+          return res;
+        });
+      }
 }

@@ -27,6 +27,9 @@ export class ReservationComponent implements OnInit {
   newEmplacement=null;
   liste$;
   node;
+
+  resExiste:any = false;
+  resExisteVehicule:any = false;
   /* current reservation */
   currentRes =null ;
   listeRes;
@@ -68,11 +71,28 @@ export class ReservationComponent implements OnInit {
       "emplacement":this.newEmplacement,
       "client":localStorage.getItem('idClient')
     }
-   this.resService.newReservation(res).subscribe((data)=>{
-      console.log(data)
-     });
-     this.addNewAppModal.hide();
-     this.ngOnInit();
+    let resEncoursVehicule =this.listeRes.filter(x => new Date (x.dateReservation) >= new Date() && x.vehicule === this.NewVoiture);
+    if(resEncoursVehicule.length === 1){
+        this.resExisteVehicule=true;
+    }
+    else {
+      this.resExisteVehicule=false;
+       /*this.resService.existe(res['dateReservation'],res['emplacement']).subscribe((data)=>{
+      this.resExiste =  data ;
+      if(this.resExiste){
+        console.log(this.resExiste)
+      }
+      else {
+        this.resExiste =  false ;
+        this.resService.newReservation(res).subscribe((data)=>{
+          console.log(data)
+         });
+         this.addNewAppModal.hide();
+         this.ngOnInit();
+      }
+     });*/
+    }
+  
   }
   _advance_disabledDate(current: Date): boolean {
     //Future
@@ -99,16 +119,15 @@ loadMap(){
       
     }, (results, status) => {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
-        console.log(results);
         if(JSON.parse(localStorage.getItem("emp")) === null){
         localStorage.setItem("emp", JSON.stringify(results));}
         
-      } else {
+      }  
         if(JSON.parse(localStorage.getItem("emp")) !== null){
           console.log('ok');
           ReservationComponent.prototype.liste$ = JSON.parse(localStorage.getItem("emp"));
     
-        }
+        
       }
     });
 

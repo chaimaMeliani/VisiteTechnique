@@ -43,6 +43,12 @@
           </div>
           <div class="modal-body">
             <p class="small-text">Créez une nouvelle Reservation à l'aide de ce formulaire, assurez-vous de toutes les remplir</p>
+            <alert *ngIf="resExiste" type="danger" [dismissible]="false">
+             Non Disponible
+             </alert>
+             <alert *ngIf="resExisteVehicule" type="danger" [dismissible]="false">
+              Le Véhicule selectionne admet une réservation en cours
+              </alert>
             <form role="form" autocomplete="off" #basicForm="ngForm">
               <div class="row">
                 <div class="col-sm-12">
@@ -136,7 +142,10 @@
         <alert *ngIf="currentRes === undefined" type="danger" [dismissible]="false">
             Aucune Reservation en cours pour  <strong>{{voiture.numChassis+'_'+voiture.marque+'_'+voiture.modele}} </strong> vous pouvez choisir un autre vehicule
           </alert>
-       <form role="form" *ngIf="currentRes !== undefined">
+          <alert *ngIf="currentRes === null" type="danger" [dismissible]="false">
+           Erreur de chargement des informations
+          </alert>
+       <form role="form" *ngIf="currentRes !=null && currentRes != undefined ">
           <div class="form-group-attached">
             
             

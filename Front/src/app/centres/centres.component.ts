@@ -1,7 +1,7 @@
 
 import { Component, OnInit, ViewChild ,ElementRef, NgZone,  } from '@angular/core';
 
-
+import { ReservationService } from '../services/reservation.service';
 @Component({
   selector: 'app-centres',
   templateUrl: './centres.component.html',
@@ -13,11 +13,48 @@ export class CentresComponent implements OnInit {
   @ViewChild('map') mapElement: ElementRef;
   map: any;
   infoWindow :any;
-  
-  constructor(private ngZone: NgZone){}
+  chartdata: boolean = false;
+ 
+  countryCount = [];
+  countryData = [];
+ 
+  //Chart
+  view: any[] = [560, 300];
+ 
+  colorScheme = {
+    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+  };
+  trimLabels=true;
+  doughnut = false;
+
+  single: any[];
+  constructor(private ngZone: NgZone,private resService:ReservationService){}
   
   ngOnInit() {
-  
+    
+    this.resService.statistique().subscribe((data)=>{
+      this.chartdata = true;
+      let singleentry = {
+        name: 'En cours',
+        value: data['enCours']
+      }
+      this.countryData.push(singleentry);
+       singleentry = {
+        name: 'Terminé',
+        value: data['fini']
+      }
+      this.countryData.push(singleentry);
+      console.log(this.countryData);
+     });
+    
+    
+    
+ 
+
+  this.single = [
+    {'name':'v1','value':'2'},
+    {'name':'v2','value':'1'},
+    {'name':'v3','value':'0'}]
   }
  
   ngAfterViewInit() {

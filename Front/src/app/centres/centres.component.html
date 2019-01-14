@@ -3,6 +3,49 @@
     <div class="card card-transparent">
       
       <div class="card-header ">
+        <div class="card-title">Statistiques
+        </div>
+        <div class="pull-right" style="width: 150px;">
+            
+          </div>
+        <div class="clearfix"></div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6"> <ngx-charts-pie-chart *ngIf = "chartdata"
+            [view]="view"
+            [scheme]="colorScheme"
+            [results]="countryData"
+            [legend]="'true'"
+            [explodeSlices]="false"
+            [labels]="true"
+            [legendTitle]="'Reservation'"
+            [doughnut]="false"
+            (select)="onSelect($event)">
+          </ngx-charts-pie-chart></div>
+          <ngx-charts-bar-vertical
+          [view]="view"
+          [scheme]="colorScheme"
+          [results]="single"
+          [gradient]="false"
+          [xAxis]="true"
+          [yAxis]="true"
+          [legend]="true"
+          [showXAxisLabel]="true"
+          [showYAxisLabel]="true"
+          [xAxisLabel]="'Vehicule'"
+          [yAxisLabel]="'Nombre de reservations'"
+          (select)="onSelect($event)">
+        </ngx-charts-bar-vertical>
+        </div>
+       
+      
+      </div>
+    </div>
+    <!-- END card -->
+    <div class="card card-transparent">
+      
+      <div class="card-header ">
         <div class="card-title">Centres de visite techniques les plus proches de vous 
         </div>
         <div class="pull-right" style="width: 150px;">
@@ -12,9 +55,10 @@
       </div>
       <div class="card-body">
           <div #map id="map" ></div>
+
       </div>
     </div>
-    <!-- END card -->
+ 
   </pg-container>
   
 

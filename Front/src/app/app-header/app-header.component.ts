@@ -14,17 +14,11 @@ export class AppHeaderComponent implements OnInit {
   client:Object =null;;
   isLoggedIn = localStorage.getItem('isLoggedIn');
   constructor(public router: Router, private loginService:LoginService,private clientService:ClientService) { 
-    if(this.isLoggedIn === null){
-      
-      this.router.navigate(['/app/login']);
-    }
+    
   }
 
   ngOnInit() {
-    if(this.isLoggedIn === null){
-      
-      this.router.navigate(['/app/login']);
-    }
+    
     this.clientService.get().subscribe((data)=>{ this.client = data});
   }
   logout(){
