@@ -2,7 +2,13 @@ import { Component, OnInit, ViewChild, OnDestroy,ElementRef  } from '@angular/co
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ClientService } from '../services/client.service';
 import { ReservationService } from '../services/reservation.service';
+<<<<<<< HEAD
 import * as jsPDF from 'jspdf';
+=======
+import * as jspdf from 'jspdf'; 
+ 
+import html2canvas from 'html2canvas'; 
+>>>>>>> be33da6e344252ec635a4480de5d0efd10e3ae57
 @Component({
   selector: 'app-reservation',
   templateUrl: './reservation.component.html',
@@ -52,6 +58,7 @@ client:any;
     this.loadMap();
 
   }
+
   refresh(){
     this.clientService.get().subscribe((data)=>
     { this.client = data;this.voitures$ = data['vehiculeslist'];this.listeRes = data['reslist'];
@@ -75,6 +82,29 @@ client:any;
     
      doc.save(this.id+'.pdf');
   }
+
+  
+  public generatePDF() 
+  { 
+  var data =  this.currentRes; 
+  html2canvas(data).then(canvas => { 
+  // Few necessary setting options 
+  var imgWidth = 208; 
+  var pageHeight = 295; 
+  var imgHeight = canvas.height * imgWidth / canvas.width; 
+  var heightLeft = imgHeight; 
+  
+  const contentDataURL = canvas.toDataURL('image/png') 
+  let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF 
+  var position = 0; 
+  pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight) 
+  pdf.save('MYPdf.pdf'); // Generated PDF  
+  }); 
+  } 
+
+
+
+
   changeReservation(){
     this.currentRes = this.listeRes.filter(x => new Date (x.dateReservation) >= new Date() && x.vehicule === this.voiture['idVehicule'])[0];
     if(this.currentRes !== undefined){
