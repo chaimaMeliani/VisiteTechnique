@@ -39,13 +39,9 @@ public class ReservationController {
 
 		return (reservationrepo.findByDateReservationAndEmplacement(date,emp).size()==0)?false:true;
 	}
-	@RequestMapping("/ByYear")
-	public List<Reservation> findByDateReservation_Year(int year) {
 
-		return reservationrepo.findByDateReservation_Year( year);
-	}
 	@RequestMapping("/statistique")
-	public Map<String, Integer> findByDateReservationLessThan(String id) {
+	public Map<String, Integer> statistique(String id) {
 		HashMap<String, Integer> map = new HashMap<>();
 	    map.put("fini", reservationrepo.findByClientAndDateReservationLessThan(id,new Date()).size());
 	    map.put("enCours", reservationrepo.findByClientAndDateReservationGreaterThan(id,new Date()).size());

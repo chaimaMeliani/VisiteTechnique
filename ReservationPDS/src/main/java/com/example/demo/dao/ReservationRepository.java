@@ -15,5 +15,5 @@ public interface ReservationRepository extends MongoRepository<Reservation, Stri
 	List<Reservation> findByDateReservationAndEmplacement(Date date,String emp);
 	List<Reservation> findByClientAndDateReservationLessThan(String id,Date date);
 	List<Reservation> findByClientAndDateReservationGreaterThan(String id,Date date);
-	List<Reservation> findByDateReservation_Year(int year);
+	
 }

@@ -9,7 +9,7 @@ import { ClientService } from '../services/client.service';
 })
 export class InfoClientComponent implements OnInit {
   @ViewChild('addNewAppModal') addNewAppModal: ModalDirective;
-  client:object={ }
+  client:object={ "firstName":"","lastName":"","cin":"","permis":"","userName":""}
   password=null;
   constructor(private clientService:ClientService) { 
     

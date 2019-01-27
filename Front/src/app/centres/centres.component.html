@@ -12,7 +12,7 @@
       </div>
       <div class="card-body">
         <div class="row">
-          <div class="col-md-6"> <ngx-charts-pie-chart *ngIf = "chartdata"
+          <div class="col-md-12"> <ngx-charts-pie-chart *ngIf = "chartdata"
             [view]="view"
             [scheme]="colorScheme"
             [results]="countryData"
@@ -23,20 +23,7 @@
             [doughnut]="false"
             (select)="onSelect($event)">
           </ngx-charts-pie-chart></div>
-          <ngx-charts-bar-vertical
-          [view]="view"
-          [scheme]="colorScheme"
-          [results]="single"
-          [gradient]="false"
-          [xAxis]="true"
-          [yAxis]="true"
-          [legend]="true"
-          [showXAxisLabel]="true"
-          [showYAxisLabel]="true"
-          [xAxisLabel]="'Vehicule'"
-          [yAxisLabel]="'Nombre de reservations'"
-          (select)="onSelect($event)">
-        </ngx-charts-bar-vertical>
+         
         </div>
        
       

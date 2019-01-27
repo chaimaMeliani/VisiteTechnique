@@ -13,8 +13,6 @@ import com.example.demo.dao.I_Reservation;
 import com.example.demo.dao.I_Vehicule;
 import com.example.demo.dao.ClientRepository;
 import com.example.demo.entities.Client;
-import com.example.demo.entities.Reservation;
-import com.example.demo.entities.Vehicule;
 
 
 @RestController
@@ -51,9 +49,9 @@ public class ClientController {
 	public Optional<Client> getById(String id){		
 
 		Optional<Client> c= clientrepo.findByIdClient(id);
-	   List<Reservation> lgnes=lc.GetReservation(id);
-		List<Vehicule> vhs = vh.GetVehicules(id);
-		System.out.println(vhs);
+	   List<Object> lgnes=lc.GetReservation(id);
+		List<Object> vhs = vh.GetVehicules(id);
+	//	System.out.println(vhs);
 		c.get().setVehiculeslist(vhs);
 		c.get().setReslist(lgnes);
 		return c;

@@ -94,6 +94,7 @@ typeImm=null;
       
       this.clientService.newClient(this.clientForm.value).subscribe((data)=>{
          this.id = data['idClient'] ;
+         console.log(this.id);
          let v =Object.assign(this.vehiculeForm.value,{"client":this.id});
          this.vehiculeService.newVehicule(v);
          this.router.navigate(['/app/login']);

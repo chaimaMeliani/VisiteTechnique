@@ -19,7 +19,7 @@ export class CentresComponent implements OnInit {
   countryData = [];
  
   //Chart
-  view: any[] = [560, 300];
+  view: any[] = [1200, 500];
  
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
@@ -106,6 +106,9 @@ loadMap(){
 
 callback(results, status) {
   if (status === google.maps.places.PlacesServiceStatus.OK) {
+    if(JSON.parse(localStorage.getItem("emp")) === null){
+      localStorage.setItem("emp", JSON.stringify(results));}
+      
     for (var i = 0; i < results.length; i++) {
       
       this.createMarker(results[i]);

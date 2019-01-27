@@ -110,7 +110,7 @@
         <div class="col-xs-12">
             <div class="btn-group btn-group-justified row w-100">
                 <div class="btn-group col-4 p-0">
-                  <button type="button" class="btn btn-default w-100">
+                  <button type="button" class="btn btn-default w-100" (click)="Ticket()">
                     <span class="p-t-5 p-b-5">
                      <i class="fa fa-download fs-15"></i></span>
                     <br>
@@ -145,7 +145,7 @@
           <alert *ngIf="currentRes === null" type="danger" [dismissible]="false">
            Erreur de chargement des informations
           </alert>
-       <form role="form" *ngIf="currentRes !=null && currentRes != undefined ">
+       <form role="form" *ngIf="currentRes !=null && currentRes != undefined " #content>
           <div class="form-group-attached">
             
             

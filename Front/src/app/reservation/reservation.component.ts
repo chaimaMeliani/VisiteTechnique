@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild, OnDestroy  } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy,ElementRef  } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ClientService } from '../services/client.service';
 import { ReservationService } from '../services/reservation.service';
+import * as jsPDF from 'jspdf';
 @Component({
   selector: 'app-reservation',
   templateUrl: './reservation.component.html',
@@ -10,12 +11,14 @@ import { ReservationService } from '../services/reservation.service';
 export class ReservationComponent implements OnInit {
   @ViewChild('selectVoitureModal') selectVoitureModal: ModalDirective;
   @ViewChild('addNewAppModal') addNewAppModal: ModalDirective;
-
+  @ViewChild('content')content:ElementRef;
+/*client*/
+client:any;
   
   /* reservation en cours */
   id=0;
   voiture ={};
-  date:Date = new Date();
+  date:any;
   emplacement;
   /******/
   //la liste des voitures
@@ -41,13 +44,36 @@ export class ReservationComponent implements OnInit {
   ngOnInit() {
     
     this.clientService.get().subscribe((data)=>
-    { this.voitures$ = data['vehiculeslist'];this.listeRes = data['reslist'];
+    {this.client = data; this.voitures$ = data['vehiculeslist'];this.listeRes = data['reslist'];
      this.voiture=this.voitures$[0];
      this.changeReservation();
     });
     
     this.loadMap();
 
+  }
+  refresh(){
+    this.clientService.get().subscribe((data)=>
+    { this.client = data;this.voitures$ = data['vehiculeslist'];this.listeRes = data['reslist'];
+     this.voiture=this.voitures$[0];
+     this.changeReservation();
+    });
+  }
+  Ticket(){
+    let doc = new jsPDF('landscape','cm','a5');
+    let specialElementHandlers = {
+      '#editor':function(element,renderer){return true;}
+
+    };
+    let content = this.content.nativeElement;
+    doc.text(10,2,"Reservation");
+    doc.text(2,4,'ID:'+this.id);
+    doc.text(2,6,'Client:'+this.client['lastName']+' '+this.client['firstName']);
+    doc.text(2,8,'Vehicule:'+this.voiture['numChassis']+'_'+this.voiture['marque']+'_'+this.voiture['modele']);
+    doc.text(2,10,'Emplacement:'+this.emplacement);
+    doc.text(0.8,12,'Date:'+this.date);
+    
+     doc.save(this.id+'.pdf');
   }
   changeReservation(){
     this.currentRes = this.listeRes.filter(x => new Date (x.dateReservation) >= new Date() && x.vehicule === this.voiture['idVehicule'])[0];
@@ -66,18 +92,20 @@ export class ReservationComponent implements OnInit {
     date.setHours(heure.getHours());
     date.setMinutes(heure.getMinutes());
     let res = {
-      "dateReservation":date.toLocaleDateString()+","+date.toLocaleTimeString(),
+      "dateReservation":date.getMonth()+1+"/"+date.getDate()+"/"+date.getFullYear()+","+date.toLocaleTimeString(),
       "vehicule":this.NewVoiture,
       "emplacement":this.newEmplacement,
       "client":localStorage.getItem('idClient')
     }
+    
     let resEncoursVehicule =this.listeRes.filter(x => new Date (x.dateReservation) >= new Date() && x.vehicule === this.NewVoiture);
+    console.log(res);
     if(resEncoursVehicule.length === 1){
         this.resExisteVehicule=true;
     }
     else {
       this.resExisteVehicule=false;
-       /*this.resService.existe(res['dateReservation'],res['emplacement']).subscribe((data)=>{
+       this.resService.existe(res['dateReservation'],res['emplacement']).subscribe((data)=>{
       this.resExiste =  data ;
       if(this.resExiste){
         console.log(this.resExiste)
@@ -88,9 +116,9 @@ export class ReservationComponent implements OnInit {
           console.log(data)
          });
          this.addNewAppModal.hide();
-         this.ngOnInit();
+         this.refresh();
       }
-     });*/
+     });
     }
   
   }

@@ -15,8 +15,8 @@ private String cin ;
 private String permis;
 private String userName;
 private String password;
-private List<Reservation> reslist;
-private List<Vehicule> vehiculeslist;
+private List<Object> reslist;
+private List<Object> vehiculeslist;
 public String getFirstName() {
 	return firstName;
 }
@@ -64,10 +64,10 @@ public Client() {
 	super();
 	// TODO Auto-generated constructor stub
 }
-public List<Reservation> getReslist() {
+public List<Object> getReslist() {
 	return reslist;
 }
-public void setReslist(List<Reservation> reslist) {
+public void setReslist(List<Object> reslist) {
 	this.reslist = reslist;
 }
 public Client(String idClient, String firstName) {
@@ -75,10 +75,10 @@ public Client(String idClient, String firstName) {
 	this.idClient = idClient;
 	this.firstName = firstName;
 }
-public List<Vehicule> getVehiculeslist() {
+public List<Object> getVehiculeslist() {
 	return vehiculeslist;
 }
-public void setVehiculeslist(List<Vehicule> vehiculeslist) {
+public void setVehiculeslist(List<Object> vehiculeslist) {
 	this.vehiculeslist = vehiculeslist;
 }
 	
